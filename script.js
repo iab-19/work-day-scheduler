@@ -1,6 +1,8 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+// Display date at the top of the webpage and refresh every second to update time(seconds)
 function displayDate() {
   var currentDate = dayjs().format('dddd, hh:mm:ss a');
   $('#currentDay').text(currentDate);
