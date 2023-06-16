@@ -22,6 +22,8 @@ textarea {
 
 .row {
   border-top: 1px solid white;
+  margin: black 2px;
+  background-color: rgba(95, 13, 196, 0.23);
 }
 
 .hour {
@@ -49,7 +51,7 @@ textarea {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: #dfda49;
   color: white;
 }
 
@@ -57,4 +59,3 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
-
