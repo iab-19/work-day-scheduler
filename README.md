@@ -19,4 +19,12 @@ THEN I can enter an event
 WHEN I click the save button for that timeblock  
 THEN the text for that event is saved in local storage  
 WHEN I refresh the page  
-THEN the saved events persist
+THEN the saved events persist  
+## Application Resources
+Description of application: This is a workday scheduler.  
+Screenshots of application:
+![Screenshot (82)](https://github.com/iab-19/work-day-scheduler/assets/132946236/07a6380b-97a6-4e13-9923-c99c0ed1e618)  
+![Screenshot (88)](https://github.com/iab-19/work-day-scheduler/assets/132946236/1e395f77-71a2-4f4f-a09d-123127b3087b)
+
+
+Link to deployed application: https://iab-19.github.io/work-day-scheduler/
