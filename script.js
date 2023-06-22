@@ -1,20 +1,4 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-
-
-
-
-
 $(document).ready(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
   var hour9 = $('#hour-9');
   var hour10 = $('#hour-10');
   var hour11 = $('#hour-11');
@@ -45,7 +29,6 @@ $(document).ready(function () {
   var save4 = $('#save4');
   var save5 = $('#save5');
 
-
   // Display date at the top of the webpage and refresh every second to update time(seconds)
   function displayDate() {
     var currentDate = dayjs().format('dddd, D MMMM YYYY hh:mm:ss a');
@@ -56,7 +39,7 @@ $(document).ready(function () {
   setInterval(displayDate, 1000);
 
 
-  // Function that sets the timbeblocks to past, present, or future
+  // Function that sets the timbeblocks to past, present, or future, changing the corresponding colors
   function setColor(hour, idName) {
     if (dayjs().hour(hour).isSame(dayjs(), ('hour'))) {
       // Adds class 'present' to id 'idName' if the current time is the same as the 'hour' time
@@ -81,6 +64,8 @@ $(document).ready(function () {
   setColor(16, hour4);
   setColor(17, hour5);
 
+
+  // Functions to save text to local storage when corresponing button is clicked
   function saveToSTorage(hourId, saveButton) {
     var hourValue = $(saveButton).siblings('.description').val();
     localStorage.setItem(hourId, hourValue);
@@ -88,7 +73,7 @@ $(document).ready(function () {
     console.log(hourValue);
   }
 
-  // Functions to save text to local storage when corresponing button is clicked
+
   save9.on('click', function() {
     saveToSTorage(hour9.attr('id'), $(this));
   });
@@ -125,16 +110,19 @@ $(document).ready(function () {
   });
 
 
+  // Function to render the saved activities in the timeblocks
+  function renderSaved(location, timeblock) {
+    var saveData= localStorage.getItem(location);
+    timeblock.val(saveData);
+  }
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  renderSaved(hour9.attr('id'), textbox9);
+  renderSaved(hour10.attr('id'), textbox10);
+  renderSaved(hour11.attr('id'), textbox11);
+  renderSaved(hour12.attr('id'), textbox12);
+  renderSaved(hour1.attr('id'), textbox1);
+  renderSaved(hour2.attr('id'), textbox2);
+  renderSaved(hour3.attr('id'), textbox3);
+  renderSaved(hour4.attr('id'), textbox4);
+  renderSaved(hour5.attr('id'), textbox5);
 });
