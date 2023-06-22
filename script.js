@@ -13,28 +13,53 @@ var hour3 = $('#hour-3');
 var hour4 = $('#hour-4');
 var hour5 = $('#hour-5');
 
-// if (dayjs().hour(9).isSame(dayjs(), ('hour'))) {
-//   console.log('The time is 9am');
-//   hour9.addClass('present');
-// } else if (dayjs().hour(0).isBefore(dayjs(), ('hour'))) {
-//   console.log('The time is before 9 am');
-//   hour9.addClass('past');
-// } else {
-//   console.log('The time is after 9 am');
-//   hour9.addClass('future');
-// }
+var textbox9 = $('#textbox9');
+var textbox10 = $('#textbox10');
+var textbox11 = $('#textbox11');
+var textbox12 = $('#textbox12');
+var textbox1 = $('#textbox1');
+var textbox2 = $('#textbox2');
+var textbox3 = $('#textbox3');
+var textbox4 = $('#textbox4');
+var textbox5 = $('#textbox5');
+
+var save9 = $('#save9');
+var save10 = $('#save10');
+var save11 = $('#save11');
+var save12 = $('#save12');
+var save1 = $('#save1');
+var save2 = $('#save2');
+var save3 = $('#save3');
+var save4 = $('#save4');
+var save5 = $('#save5');
+
+
+
+function changeColor(button) {
+  button.addClass('blueee');
+}
+
+
+// Display date at the top of the webpage and refresh every second to update time(seconds)
+function displayDate() {
+  var currentDate = dayjs().format('dddd, D MMMM YYYY hh:mm:ss a');
+  $('#currentDay').text(currentDate);
+}
+
+displayDate();
+setInterval(displayDate, 1000);
+
 
 // Function that sets the timbeblocks to past, present, or future
 function setColor(hour, idName) {
   if (dayjs().hour(hour).isSame(dayjs(), ('hour'))) {
-    console.log('The time is ' + hour + 'am');
     // Adds class 'present' to id 'idName' if the current time is the same as the 'hour' time
     idName.addClass('present');
   } else if (dayjs().hour(hour).isBefore(dayjs(), ('hour'))) {
     // Add class 'past' to id 'idName' if the current time is before the 'hour' time
     idName.addClass('past');
   } else {
-    // adds class 'future' if
+    // adds class 'future' if current time is neither in the past or the present
     idName.addClass('future');
   }
 
@@ -50,25 +75,15 @@ setColor(15, hour3);
 setColor(16, hour4);
 setColor(17, hour5);
 
-var currentDate = dayjs().format('dddd, hh:mm:ss a');
-// Display date at the top of the webpage and refresh every second to update time(seconds)
-function displayDate() {
-  currentDate = dayjs().format('dddd, hh:mm:ss a');
-  $('#currentDay').text(currentDate);
+function saveToSTorage(hourId, saveButton) {
+  var hourValue = $(saveButton).siblings('.description').val();
+  localStorage.setItem(hourId, hourValue);
+  console.log('Button is working');
+  console.log(hourValue);
 }
 
-// console.log(dayjs().hour(9));
-displayDate();
-setInterval(displayDate, 1000);
+save9.on('click', saveToSTorage(hour9.attr('id'), this));
 
-var before = dayjs().isBefore(dayjs(), ('hour'));
-var after = dayjs().isAfter(dayjs(), ('hour'));
-var same = dayjs().isSame(dayjs(),('hour'));
-console.log(before);
-console.log(after);
-console.log(same);
-
-// hour9.addClass('past');
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -77,6 +92,7 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
